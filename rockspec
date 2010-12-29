@@ -20,7 +20,7 @@ dependencies = {
 build = {
   type = "none",
   install = {
-     lua = {        ["lua.recaptcha"] = "lua/lua/recaptcha.lua",
+     lua = {        ["lua.recaptcha"] = "lua/recaptcha.lua",
      }
   }
 }
