@@ -15,12 +15,9 @@ detailed   = [[
 ]]
 
 license    = 'MIT/X11'
-homepage   = 'http://sputnik.freewisdom.org/lib/recaptcha/'
+homepage   = 'http://spu.tnik.org/lib/recaptcha/'
 favicon    = 'http://media.freewisdom.org/etc/recaptcha.ico'
-download   = 'http://sputnik.freewisdom.org/files/recaptcha-$version.tar.gz'
---download   = "/tmp/versium-$version.tar.gz"
-push       = "scp %s yuri@web10.webfaction.com:~/webapps/static/files/"
---push       = "cp %s /tmp/"
+download   = 'http://spu.tnik.org/files/recaptcha-$version.tar.gz'
 logo       = 'recaptcha.png'
 keywords   = 'lua, recaptcha, captcha'
 rss        = homepage.."releases.rss"
