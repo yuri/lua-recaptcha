@@ -1,0 +1,26 @@
+<rss version="2.0">
+ <channel>
+  <title>ReCaptcha</title>
+  <description/>
+   <link>http://spu.tnik.org/lib/recaptcha/</link>
+     
+   <item>
+    <link>http://spu.tnik.org/files/recaptcha-$version.tar.gz</link>
+    <title>ReCaptcha 8.07.07</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/recaptcha-8.07.07.tar.gz</guid>
+    <description>fixing HTML to please validators</description>
+   </item>
+   <item>
+    <link>http://spu.tnik.org/files/recaptcha-$version.tar.gz</link>
+    <title>ReCaptcha 8.06.12</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/recaptcha-8.06.12.tar.gz</guid>
+    <description>ensuring error-less return when post fields are missing</description>
+   </item>
+   <item>
+    <link>http://spu.tnik.org/files/recaptcha-$version.tar.gz</link>
+    <title>ReCaptcha 8.05.26</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/recaptcha-8.05.26.tar.gz</guid>
+    <description>the initial release</description>
+   </item>
+ </channel>
+</rss>

@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="description" content="ReCaptcha: A Lua interface to reCaptcha."/>
+  <meta name="keywords" content="lua, recaptcha, captcha"/>
+  <link rel="shortcut icon" href="http://media.freewisdom.org/etc/recaptcha.ico"/>
+  <link rel="alternate" type="application/rss+xml" title="New releases of ReCaptcha" href='http://spu.tnik.org/lib/recaptcha/releases.rss'/>
+  <title>ReCaptcha</title>
+  <style type="text/css">
+    body { color:#000; background:#fff; }
+    #header { width:100%;
+       text-align:center;  
+       border-top:solid #aaa 1px;
+       border-bottom:solid #aaa 1px;
+    }
+    #header p { margin-left:0; }
+    p { margin-left:3px; }
+    sup.return {font-size: small;}
+    a.return {text-decoration: none; color: gray;}
+    pre { background-color:#ffe; white-space:pre; padding-left:3ex; border-left: 1px solid gray; margin-left: 10px}
+
+    table.index { border: 1px #00007f; }
+    table.index td { text-align: left; vertical-align: top; }
+    table.index ul { padding-top: 0em; margin-top: 0em; }
+
+    table {
+     border: 1px solid black;
+	 border-collapse: collapse;
+     margin-left: auto;
+     margin-right: auto;
+    }
+    th {
+     border: 1px solid black;
+     padding: 0.5em;
+    }
+    td {
+     border: 1px solid black;
+     padding: 0.5em;
+    }
+    div.header, div.footer { margin-left: 0em; }
+  </style>
+</head>
+<body>
+ <div id="header">
+  <a name="top"></a>
+  <img border=0 alt="ReCaptcha logo" src="recaptcha.png"/>
+  <p>A Lua interface to reCaptcha.</p>
+  <p>
+   <a name="toc"></a><a href="#Overview">Overview</a> &middot; <a href="#Installation">Installation</a> &middot; <a href="#Using Recaptcha">Using Recaptcha</a> &middot; <a href="#Contact">Contact</a> &middot; <a href="#LuaDoc">LuaDoc</a> &middot; <a href="#License">License</a>
+  </p>
+ </div>
+ 
+
+<a name="Overview"></a><h1>Overview<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
+<p>     <a href="http://recaptcha.net/">reCaptcha</a> is a free captcha web service that
+     shows the visitors words from old books helping digitize them. This, 
+     module provides a Lua interface to recaptcha.  You will need to get your
+     own API key from recaptcha.net to use it.
+</p>
+
+
+<a name="Installation"></a><h1>Installation<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
+
+<p>  The Lua interface Recaptcha to recaptcha consists of a single file (recaptcha.lua) of less
+  than 100 lines, plus a test script (tests/recaptcha.cgi) which is meant to be used with
+  <a href="http://wsapi.luaforge.net">WSAPI</a>.  Here is a list of recent
+  releases:</p>
+
+<p>  <ul>
+  <li><a href="http://spu.tnik.org/files/recaptcha-8.07.07.tar.gz">ReCaptcha-8.07.07</a> - fixing HTML to please validators (July 7, 2008) </li> <li><a href="http://spu.tnik.org/files/recaptcha-8.06.12.tar.gz">ReCaptcha-8.06.12</a> - ensuring error-less return when post fields are missing (June 12, 2008) </li> <li><a href="http://spu.tnik.org/files/recaptcha-8.05.26.tar.gz">ReCaptcha-8.05.26</a> - the initial release (May 26, 2008) </li> 
+  </ul></p>
+
+<p>  You can also install it using LuaRocks with</p>
+
+<pre><code>luarocks install recaptcha
+</code></pre>
+
+<p>  or:</p>
+
+<pre><code>luarocks --from=http://sputnik.freewisdom.org/rocks/earth install recaptcha
+</code></pre>
+
+
+
+
+
+<a name="Using Recaptcha"></a><h1>Using Recaptcha<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
+
+
+<h2>Creating the catpcha object</h2>
+
+<p>You will need to get your PRIVATE and PUBLIC API keys from <a href="https://admin.recaptcha.net/recaptcha/createsite/">recaptcha.net</a>.
+Once you have them, create an instance or ReCaptcha like this:</p>
+
+<pre><code>captcha = recaptcha.new{PRIVATE, PUBLIC}
+</code></pre>
+
+<h2>Generating the Widget</h2>
+
+<p>Include the output of captcha:get_html() into your form.  For instance:</p>
+
+<pre><code>my_html = "&lt;form action='...' method='post'...&gt;"
+          .. "..." -- add your fields
+          .. captcha:get_html()
+          .. "&lt;input type='submit'/&gt;"
+          .. "&lt;/form&gt;"
+</code></pre>
+
+<h2>Verifying User's Input</h2>
+
+<p>Send your POST fields and the user's IP address to captcha:verify().  For instance, for WSAPI:</p>
+
+<pre><code>local request = wsapi.request.new(wsapi_env)
+local ok, err = captcha:verify(request.POST, wsapi_env.REMOTE_ADDR)
+
+if ok then
+   ...
+else
+   print ("Error: "..err)
+end
+</code></pre>
+
+
+
+
+<a name="Contact"></a><h1>Contact<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
+Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
+
+
+<a name="LuaDoc"></a><h1>LuaDoc<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
+ <table style="width:100%" class="function_list">
+ 
+  <tr>
+   <td colspan=2 style='background: #dddddd;'>
+    <h2>recaptcha</h2>
+    <p></p>
+    
+   </td>
+  </tr>
+  
+   <tr>
+	<td class="name" width="300px" style="vertical-align: top;"><b>ReCaptcha:get_fields()</b></td>
+	<td class="summary" >Returns a table of names of fields posted by the captcha widget.
+     <dl>
+      
+     </dl>
+     Returns: <font color="purple">a table of field names. </color>
+    </td>
+   </tr>
+  
+   <tr>
+	<td class="name" width="300px" style="vertical-align: top;"><b>ReCaptcha:get_html()</b></td>
+	<td class="summary" >Returns the html block that creates the ReCaptcha widget.
+     <dl>
+      <dt><color="green"><b>options</b></font>: <dd>a table of options.</dd></dt>
+     </dl>
+     Returns: <font color="purple">a string containing JavaScript and HTML for inclusion in an HTML document. </color>
+    </td>
+   </tr>
+  
+   <tr>
+	<td class="name" width="300px" style="vertical-align: top;"><b>ReCaptcha:verify()</b></td>
+	<td class="summary" >Verifies the captcha.
+     <dl>
+      <dt><color="green"><b>params</b></font>: <dd>the table of POST parameters submitted by the client.</dd></dt><dt><color="green"><b>remote_ip</b></font>: <dd>user's IP address.</dd></dt>
+     </dl>
+     Returns: <font color="purple">true if the verification is successful and false otherwise. </color>
+    </td>
+   </tr>
+  
+   <tr>
+	<td class="name" width="300px" style="vertical-align: top;"><b>new()</b></td>
+	<td class="summary" >Creates a new ReCaptcha  object.
+     <dl>
+      <dt><color="green"><b>args</b></font>: <dd>a single argument with two fields: the private API key and the public API key.</dd></dt>
+     </dl>
+     Returns: <font color="purple">an instance of ReCaptcha. </color>
+    </td>
+   </tr>
+  
+ 
+ </table>
+
+
+
+<a name="License"></a><h1>License<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
+
+<p>Copyright (c) 2008 Yuri Takhteyev</p>
+
+<p>Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.</p>
+
+
+
+</body>
+</html>

@@ -45,7 +45,7 @@ Installation = [[
 
   or:
 
-    luarocks --from=http://sputnik.freewisdom.org/rocks/earth install recaptcha
+    luarocks --from=http://sputnik.freewisdom.org/rocks/fenchurch install recaptcha
 
 ]]
 
