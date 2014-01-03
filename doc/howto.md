@@ -4,7 +4,7 @@
 You will need to get your PRIVATE and PUBLIC API keys from <a href="https://admin.recaptcha.net/recaptcha/createsite/">recaptcha.net</a>.
 Once you have them, create an instance or ReCaptcha like this:
 
-    captcha = recaptcha.new{PRIVATE, PUBLIC}
+    captcha = recaptcha.new{PUBLIC, PRIVATE}
 
 ## Generating the Widget
 

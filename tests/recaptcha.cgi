@@ -5,7 +5,7 @@ PRIVATE="<your private key here>"
 PUBLIC="<your public key here>"
 OWN_URL="/cgi-bin/recaptcha.cgi" -- you might need to change this
 
-captcha = recaptcha.new{PRIVATE, PUBLIC}
+captcha = recaptcha.new{PUBLIC, PRIVATE}
 
 return function(wsapi_env)
    require("wsapi.request")
